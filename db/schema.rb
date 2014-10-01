@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327064028) do
+ActiveRecord::Schema.define(version: 20141001103839) do
 
   create_table "bnfs", force: true do |t|
     t.integer "component_id"
@@ -56,6 +56,50 @@ ActiveRecord::Schema.define(version: 20140327064028) do
   end
 
   add_index "logs", ["component_id", "component_type"], name: "index_logs_on_component_id_and_component_type"
+
+  create_table "personality_test_answer_pictures", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "personality_test_answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personality_test_answers", force: true do |t|
+    t.text     "value"
+    t.integer  "personality_test_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personality_test_answers", ["personality_test_question_id"], name: "index_personality_test_answers_on_personality_test_question_id"
+
+  create_table "personality_test_question_pictures", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "personality_test_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personality_test_questions", force: true do |t|
+    t.text     "value"
+    t.integer  "personality_test_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personality_test_questions", ["personality_test_id"], name: "index_personality_test_questions_on_personality_test_id"
+
+  create_table "personality_tests", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "results", force: true do |t|
     t.integer  "student_id"
