@@ -1,0 +1,11 @@
+var $li = $('#pt_test_' + <%= @test.id %>);
+$('#pt_tests .active').removeClass('active');
+$li.addClass('active');
+$('#pt_main').html(' <%= escape_javascript render( partial: 'edit' ) %> ');
+$('.x-editable').editable({
+    validate: function(value) {
+        if($.trim(value) == '') {
+            return 'Пустая строка недопустима';
+        }
+    }
+});

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001103839) do
+ActiveRecord::Schema.define(version: 20141004152504) do
 
   create_table "bnfs", force: true do |t|
     t.integer "component_id"
@@ -57,6 +57,21 @@ ActiveRecord::Schema.define(version: 20141001103839) do
 
   add_index "logs", ["component_id", "component_type"], name: "index_logs_on_component_id_and_component_type"
 
+  create_table "personalities", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "personality_trait_id"
+    t.float    "begin_at"
+    t.float    "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personalities_students", id: false, force: true do |t|
+    t.integer "personality_id", null: false
+    t.integer "student_id",     null: false
+  end
+
   create_table "personality_test_answer_pictures", force: true do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -66,6 +81,16 @@ ActiveRecord::Schema.define(version: 20141001103839) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "personality_test_answer_weights", force: true do |t|
+    t.float    "value"
+    t.integer  "personality_test_answer_id"
+    t.integer  "personality_trait_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personality_test_answer_weights", ["personality_trait_id"], name: "index_personality_test_answer_weights_on_personality_trait_id"
 
   create_table "personality_test_answers", force: true do |t|
     t.text     "value"
@@ -86,8 +111,15 @@ ActiveRecord::Schema.define(version: 20141001103839) do
     t.datetime "updated_at"
   end
 
+  create_table "personality_test_question_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "personality_test_questions", force: true do |t|
     t.text     "value"
+    t.integer  "personality_test_question_type_id"
     t.integer  "personality_test_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,7 +127,25 @@ ActiveRecord::Schema.define(version: 20141001103839) do
 
   add_index "personality_test_questions", ["personality_test_id"], name: "index_personality_test_questions_on_personality_test_id"
 
+  create_table "personality_test_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "personality_tests", force: true do |t|
+    t.string   "name"
+    t.integer  "personality_test_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personality_tests_students", id: false, force: true do |t|
+    t.integer "personality_test_id", null: false
+    t.integer "student_id",          null: false
+  end
+
+  create_table "personality_traits", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,0 +1,45 @@
+/*
+*= require bootstrap.min
+*= require bootstrap_custom
+*= require bootstrap-editable
+*= require font-awesome.min
+*/
+
+.pt-test-info {
+  a {
+    margin-left: 20px;
+  }
+}
+
+.editable-textarea span.editable-container.editable-inline,
+.editable-textarea .control-group,
+.editable-textarea .editable-input,
+.form-control.input-large {
+  width: 100%;
+}
+
+#pt_question_info a {
+  color: #555555;
+}
+
+input.editable-image-input {
+  display: none;
+}
+
+.nav {
+  margin-bottom: 50px;
+}
+
+.panel-body table {
+  width: 100%;
+}
+
+.answer {
+  margin-left: 10px
+}
+
+.pt-wrapper.list-group-item {
+
+  position:relative;
+  line-height:20px;
+}

@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <%= link_to answer.value, '#pt_collapse_answer_' + answer.id.to_s, data: {toggle:'collapse', parent: 'pt_answers'} %>
+    </h4>
+  </div>
+  <div id="pt_collapse_answer_<%= answer.id %>" class="panel-collapse collapse <%= params[:create_open_panel] ? 'in' : '' %>">
+    <div class="panel-body">
+      <ul id="pt_weights" class="list-group">
+        <%= render partial: 'personality_test_answer_weights/list_weight', collection: answer.weights, as: 'weight' %>
+      </ul>
+      <%= link_to 'Добавить черту', new_personality_test_answer_weight_path, remote: true,
+                   data: { params: { answer_id: answer.id }},
+                   class: 'btn-sm btn-default center-block pull-right'%>
+    </div>
+  </div>
+</div>

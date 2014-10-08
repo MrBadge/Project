@@ -1,0 +1,26 @@
+<!--sidebar-->
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+  <div data-spy="affix" data-offset-top="45" data-offset-bottom="90">
+    <ul class="nav" id="pt_tests">
+      <%= render partial: 'personality_tests/list_test', collection: PersonalityTest.all, as: 'test' %>
+      <!--TODO: удалить и поменять в js на append-->
+      <li id="pt_add_test">
+
+      </li>
+    </ul>
+
+    <ul class="nav">
+      <li>
+        <%= link_to 'Создать новый тест', new_personality_test_path, remote: true %>
+      </li>
+
+      <li>
+        <%= link_to 'Редактировать черты характера', personality_traits_path %>
+      </li>
+
+      <li>
+        <%= link_to 'Редактировать психологические портреты', personalities_path %>
+      </li>
+    </ul>
+  </div>
+</div><!--/sidebar-->

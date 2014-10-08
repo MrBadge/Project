@@ -1,0 +1,9 @@
+<li id="pt_trait_<%= trait.id %>" class="list-group-item">
+    <%= link_to trait.name, '#', class: 'x-editable',
+                data: { name: 'name',
+                        type: 'text',
+                        pk: trait.id,
+                        url: personality_trait_path(trait),
+                       } %>
+    <%= link_to '', trait, method: :delete, remote: true, data: { confirm: 'Вы уверены?'}, class: 'glyphicon glyphicon-remove pull-right' %>
+</li>

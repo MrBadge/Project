@@ -41,6 +41,8 @@ end
 #You need install imagemagick to get all features from using paperclip
 gem "paperclip", "~> 4.2"
 
+gem 'remotipart', '~> 1.2'
+
 #for transliteration
 #gem "the_string_to_slug", "~> 0.0.5"
 
