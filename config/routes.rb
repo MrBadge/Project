@@ -21,14 +21,17 @@ UIR::Application.routes.draw do
   resources :semanticanswers
   resources :personality_tests do
     get :results, on: :collection
+    post :save_results, on: :collection
   end
-  resources :personality_test_questions
-  resources :personality_test_answers
-  resources :personality_test_answer_pictures
-  resources :personality_test_question_pictures
-  resources :personalities
-  resources :personality_traits
-  resources :personality_test_answer_weights
+  resources :personality_test_questions, except: [:create, :index] do
+    post :batch_update, on: :collection
+  end
+  resources :personality_test_answers, only: [:new, :update, :destroy]
+  resources :personality_test_answer_pictures, only: [:create, :update]
+  resources :personality_test_question_pictures, only: [:create, :update]
+  resources :personalities, only: [:index, :new, :update, :destroy]
+  resources :personality_traits, only: [:index, :new, :update, :destroy]
+  resources :personality_test_answer_weights, only: [:new, :update, :destroy]
 
   post "semanticanswers/create"
   post "semanticanswers/updatesemanticjson"

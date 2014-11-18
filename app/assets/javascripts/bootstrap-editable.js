@@ -852,7 +852,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
                type = 'textarea';
            }
 
-           //create input of specified type. Input will be used for converting value, not in form
+           //create_or_update input of specified type. Input will be used for converting value, not in form
            if(typeof $.fn.editabletypes[type] === 'function') {
                TypeConstructor = $.fn.editabletypes[type];
                typeOptions = this.sliceObj(options, this.objectKeys(TypeConstructor.defaults));
@@ -1492,7 +1492,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
             //name
             this.options.name = this.options.name || this.$element.attr('id');
              
-            //create input of specified type. Input needed already here to convert value for initial display (e.g. show text by id for select)
+            //create_or_update input of specified type. Input needed already here to convert value for initial display (e.g. show text by id for select)
             //also we set scope option to have access to element inside input specific callbacks (e. g. source as function)
             this.options.scope = this.$element[0]; 
             this.input = $.fn.editableutils.createInput(this.options);
@@ -2320,7 +2320,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
 /**
 AbstractInput - base class for all editable inputs.
 It defines interface to be implemented by any input type.
-To create your own input you can inherit from this class.
+To create_or_update your own input you can inherit from this class.
 
 @class abstractinput
 **/

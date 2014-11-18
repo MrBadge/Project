@@ -1,5 +1,6 @@
 class PersonalityTraitsController < ApplicationController
   layout 'personality_tests'
+  before_action :check_admin
 
   def index
     @traits = PersonalityTrait.all

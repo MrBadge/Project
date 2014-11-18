@@ -4,13 +4,14 @@
                       type: 'select',
                       pk: weight.id,
                       source: @traits.map {|t| {value: t.id, text: t.name}},
-                      url: edit_personality_test_answer_weight_path(weight),
+                      url: personality_test_answer_weight_path(weight),
                       value: weight.trait.try(:id)} %>
   <span class="label label-info">
     <%= link_to weight.value, '#', class: 'x-editable',
                 data: { mode: 'popup',
                         name: 'value',
                         type: 'number',
+                        step: 'any',
                         clear: false,
                         pk: weight.id,
                         url: personality_test_answer_weight_path(weight)

@@ -1,4 +1,4 @@
-var $li = $(' <%= escape_javascript render( partial: 'list_test', locals: {test: @test}) %> ');
+var $li = $(' <%= escape_javascript render( partial: 'list_test', locals: {test: @test, admin: true}) %> ');
 $('#pt_main').html(' <%= escape_javascript render( partial: 'edit' ) %> ');
 $('#pt_add_test').before($li);
 $('#pt_tests .active').removeClass('active');

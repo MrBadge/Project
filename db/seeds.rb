@@ -4,8 +4,8 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#   cities = City.create_or_update([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create_or_update(name: 'Emanuel', city: cities.first)
 task = Task.create(sentence1: 'По итогам научной конференции МИФИ-2008 срочно произвести награждение   дипломами и премиями МИФИ  лучших студентов в  актовом зале МИФИ с 10 до 12.',
   sentence2: 'Какими дипломами будут награждены лучшие студенты МИФИ в актовом зале в апреле 2008 года?',
   sentence3: 'На научную конференцию в город Н в сентябре 2008 года могут поехать студенты старших курсов МИФИ  с докладами.')
@@ -70,3 +70,10 @@ task.create_g_answer
 task.v_answer.create_bnf(bnf_json: '{}')
 task.create_s_answer(answer: '[null,null,null]')
 
+PersonalityTestType.create name: 'стандартный'
+PersonalityTestType.create name: 'результат делится на время'
+PersonalityTestType.create name: 'max'
+PersonalityTestQuestionType.create name: 'один вариант'
+PersonalityTestQuestionType.create name: 'несколько вариантов'
+PersonalityTestQuestionType.create name: 'Независимые приоритеты'
+PersonalityTestQuestionType.create name: 'Приоритеты'

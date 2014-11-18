@@ -14,31 +14,24 @@ $('.editable-image').click( function() {
 });
 $('.editable-image-input').change(function(event) {
     var $this = $(this);
-    var id = $this.data('id');
-    var questionId = $this.data('questionId');
-    var type = 'patch';
-    var $img = $this.prev();
-
-    if (!id) {
-        id = '';
-        type = 'post';
-    }
+    var $img =  $this.closest('form').find('img');
 
     if ($this.prop('files')) {
         var file = $this.prop('files')[0];
         if (file) {
             var reader = new FileReader();
-            reader.onload = function (event) {
-
-                $.ajax({url: "/personality_test_question_pictures/" + id,
-                    type: type,
-                    data: {question_id: questionId, filename: file.name, data: event.target.result},
-                    success: function (data, status, xhr) {
-                        $img.attr('src', event.target.result);
-                    }
-                });
+            reader.onload = function (e) {
+                $this.closest('form').submit();
             };
             reader.readAsDataURL(file);
+        }
+    }
+});
+
+$('.x-editable-answer').editable({
+    validate: function(value) {
+        if($.trim(value) == '') {
+            return 'Пустая строка недопустима';
         }
     }
 });

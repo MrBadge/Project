@@ -1,79 +1,22 @@
-<div class="pt-wrapper">
-    <div class="col-sm-12">
-        <div class="row row-offcanvas row-offcanvas-left">
-
-            <!-- main area -->
-            <div class="col-xs-10 col-sm-7" data-spy="scroll" data-target="#sidebar-nav">
-
-                <div class="row">
-                    <h2><%= @test.name %></h2>
-
-                    <% @test.questions.each do |question| %>
-                        <div id="ex_question_<%= question.id %>" class="panel panel-default ex-question">
-                            <div class="panel-heading">
-                                <h4><%= question.value %></h4>
-                            </div>
-                            <div class="panel-body">
-                                <ul id="ex_answers" class="list-group radio_group">
-                                    <% question.answers.each do |answer| %>
-                                        <li class="list-group-item">
-                                            <span href="#" class="btn-group btn-toggle pull-right">
-                                                <button class="btn btn-xs btn-default answer">
-                                                    <i class="fa fa-circle-o"></i>
-                                                </button>
-                                            </span>
-                                            <span class="answer">
-                                                <%= answer.value %>
-                                            </span>
-                                        </li>
-                                    <% end %>
-                                </ul>
-                            </div>
-                        </div>
-                    <% end %>
-                    <button class="btn btn-primary pull-right">Next</button>
-
-                    <hr>
-
-                </div>
-                <!-- /.col-xs-12 main -->
-            </div>
-            <!--/.row-->
-        </div>
-        <!--/.container-->
-    </div>
-    <!--/.page-container-->
-</div>
-
-
-
-    <script type="text/javascript" async="" src="assets/js/quant.js"></script>
-    <script type="text/javascript" src="assets/js/custom.js"></script>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('[data-toggle=offcanvas]').click(function() {
-            $('.row-offcanvas').toggleClass('active');
-        });
-
-        //$('.btn-toggle').click(function() {
-        //    $(this).find('.btn').toggleClass('active').toggleClass('btn-default').toggleClass('btn-primary');
-        //});
-    });
-    </script>
-
+<div class="col-sm-10">
+  <%= form_tag({controller: 'personality_tests', action: 'save_results', id: @test.id }, method: "post", id: "pt_show_questions" ) do %>
+    <%= render partial: 'show_question', collection: @test.questions.order(:ordering), as: :question %>
+    <%= hidden_field_tag :time, @current_time %>
+  <% end %>
+</div><!--/col-->
 
 <% content_for :sidebar_replace do  %>
     <!-- sidebar -->
-    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-      <div class="affix-top" data-spy="affix" data-offset-top="45" data-offset-bottom="90">
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" >
+      <div class="affix-top" data-spy="affix1" data-offset-top="60" data-offset-bottom="200" >
         <ul class="nav" id="sidebar-nav">
-          <% @test.questions.each do |question| %>
-            <li>
-              <%= link_to question.value, question, remote: true %>
-            </li>
+          <% @test.questions.order(:ordering).each do |question| %>
+              <li>
+                <%= link_to question.ordering.to_s + ') ' + question.value, "#pt_show_question_#{question.id}", class: 'pt-link-to-show' %>
+              </li>
           <% end %>
         </ul>
+        <a id="pt_test_submit" class="btn btn-success">Завершить тест</a>
       </div>
     </div>
 <% end %>

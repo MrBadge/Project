@@ -64,18 +64,19 @@ a {
   height: 100%;
   padding-right: 0;
   padding-top: 20px;
+  position: relative;
 }
 
 #sidebar .affix {
   position:fixed;
   top:55;
-  width:220px;
+  width:100%;
 }
 
 #sidebar .affix-bottom {
   position:fixed;
   top:55;
-  width:220px;
+  width:100%;
 }
 
 #sidebar .nav {

@@ -1,6 +1,8 @@
 class PersonalityTestQuestionPicture < ActiveRecord::Base
-  has_attached_file :image
+  dragonfly_accessor :image
   belongs_to :personality_test_question
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+  def question
+    personality_test_question
+  end
 end

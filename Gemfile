@@ -39,7 +39,7 @@ group :development, :test do
 end
 
 #You need install imagemagick to get all features from using paperclip
-gem "paperclip", "~> 4.2"
+gem 'dragonfly', '~> 1.0.7'
 
 gem 'remotipart', '~> 1.2'
 

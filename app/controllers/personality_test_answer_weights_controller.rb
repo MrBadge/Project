@@ -1,4 +1,6 @@
 class PersonalityTestAnswerWeightsController < ApplicationController
+  before_action :check_admin
+
   def new
     respond_to do |format|
       format.js {

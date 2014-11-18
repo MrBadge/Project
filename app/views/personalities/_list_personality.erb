@@ -1,4 +1,7 @@
 <tr id="pt_personality_<%= personality.id %>">
+  <td class="associated-tests">
+      <%= render partial: 'assocoated_tests', locals: {personality: personality} %>
+  </td>
   <td>
     <%= link_to personality.name, '#', class: 'x-editable',
                 data: { name: 'name',
@@ -10,10 +13,10 @@
 
   <td>
     <%= link_to personality.description, '#', class: 'x-editable',
-                data: { name: 'name',
+                data: { name: 'description',
                         type: 'textarea',
                         pk: personality.id,
-                        url: personality_path(personality),
+                        url: personality_path(personality)
                 } %>
   </td>
 

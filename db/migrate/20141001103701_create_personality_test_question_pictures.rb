@@ -1,8 +1,8 @@
 class CreatePersonalityTestQuestionPictures < ActiveRecord::Migration
   def change
     create_table :personality_test_question_pictures do |t|
-      t.attachment :image
-      t.references :personality_test_questions
+      t.string :image_uid
+      t.references :personality_test_question
       t.timestamps
     end
 

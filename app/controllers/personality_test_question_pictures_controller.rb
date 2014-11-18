@@ -1,17 +1,14 @@
 class PersonalityTestQuestionPicturesController < ApplicationController
-  def create
-    data = params[:data]
-    filename = params[:filename]
+  before_action :check_admin
 
-    unless params[:data].blank?
-      temp = params[:data]
-      File.open(params[:filename],"wb") do |file|
-        file.write(Base64.decode64(temp))
-      end
-      f = File.open(params[:filename])
-      PersonalityTestQuestionPicture.create image: f, personality_test_question_id: params[:question_id]
-      File.delete(params[:filename])
-    end
-    render nothing: true
+  def create
+    @picture = PersonalityTestQuestionPicture.create(image: params[:question_picture], personality_test_question_id: params[:question_id])
+    render :create_or_update
+  end
+
+  def update
+    @picture = PersonalityTestQuestionPicture.find(params[:id])
+    @picture.update(image: params[:question_picture])
+    render :create_or_update
   end
 end
